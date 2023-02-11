@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:quiz_app/answer.dart';
@@ -6,9 +8,10 @@ import 'package:quiz_app/question.dart';
 class Quiz extends StatelessWidget {
   final List<Map> _questions;
   final int _questionIndex;
-  final VoidCallback _answerQuestion;
+  final Function _answerQuestion;
+  int index = 0;
 
-  const Quiz(
+  Quiz(
       {super.key,
       required questions,
       required questionIndex,
@@ -23,9 +26,9 @@ class Quiz extends StatelessWidget {
       Question(question: _questions[_questionIndex]["questionText"]),
       ..._questions[_questionIndex]["answers"].map((answer) {
         return Answer(
-          answerQuestion: _answerQuestion,
-          answerText: answer,
-        );
+            answerQuestion: (int score) => _answerQuestion(score),
+            answerText: answer,
+            score: _questions[_questionIndex]["score"][index++]);
       }),
     ]);
   }
