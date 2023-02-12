@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'package:quiz_app/answer.dart';
 import 'package:quiz_app/question.dart';
 
+//ignore: must_be_immutable
 class Quiz extends StatelessWidget {
   final List<Map> _questions;
   final int _questionIndex;
